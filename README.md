@@ -22,7 +22,7 @@ The project is built using the following:
   as most Java IDEs come with maven bundled.
 * Download the project and run maven command: mvn verify. 
   The command runs with headless browser htmlunit.Be warned that htmlunit throws a lot
-  warnings but it still does the job.
+  of warnings but it still does the job.
   After running; Cucumber reports will be generated in 'target/cucumber' directory.
   Within that directory click on index.html to see Cucumber reports.
 * Works with any browser For eg: to run with chrome:
