@@ -12,6 +12,7 @@ The project is built using the following:
 
 ##### Test Cases: Cucumber feature files should serve as Test Cases.Click below link:
 * [Cucumber feature files](/src/test/resources/features)
+* One feature with many scenarios has been written but only one Scenario implemented
 * Once you run the program see cucumber reports in target directory to see colourful TestCases
   all in one place coupled with screenshots of any failed tests
 
