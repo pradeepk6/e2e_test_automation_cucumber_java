@@ -1,20 +1,15 @@
-
+@createaccount
 Feature: Create online Account
   Create a new online account
 
   Background:
-    Given I am on join page
+    Given I have navigated to join page
 
-  @createaccount
-  Scenario Outline: Create Account fails if mandatory fields are not filled
+  Scenario: Create Account fails if mandatory fields are not filled
+    When I do NOT fill in fields : email,firstName,lastName,password and submit
+    Then I should see Required validation failure for all the mentioned fields
 
-    When I do NOT fill in anything <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
-    Then I should see Required validation failure
-    Examples:
-      | email | firstName | lastName | password |
-      |       |           |          |          |
 
-  @ignore
   Scenario Outline: Create Account fails as email format is wrong
     When I fill in <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
     Then I should see error message
@@ -22,24 +17,24 @@ Feature: Create online Account
     Not a valid email. Take a closer look.
     """
     Examples:
-      | email | firstName | lastName | password |
-      | 123   |  firnam   | lasnam   |  1234567 |
+      | email          | firstName | lastName | password |
+      | 123            |  firnam   | lasnam   |  1234567 |
+      | 123gmail.com   |  firnam   | lasnam   |  1234567 |
 
-  @ignore
-  Scenario Outline: Create Account fails as an account already exists with the email
-    When I fill in <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
-    Then I should see error message
+  Scenario Outline: Asynchronous validation for Email already in use
+    When I fill in a pre-exiting email <email>
+    And goto to next field so as to trigger asynchromous validation of email field
+    Then I should see email in use error message
     """
     Mendeley account found
     """
     Examples:
-      | email       | firstName | lastName | password |
-      | 123@123.com |  firnam   | lasnam   |  1234567 |
+      | email       |
+      | 123@123.com |
 
-  @ignore
   Scenario Outline: Create Account fails as chosen password does not meet minimum requirements
-    When I fill in randomly generated email <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
-    Then I should see error message
+    When I fill in <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
+    Then I should see password validation error message
     """
     Password must be at least 7 character
     """
@@ -47,9 +42,9 @@ Feature: Create online Account
       | email             | firstName | lastName | password |
       | generate randomly |  firnam   | lasnam   |  123     |
 
-  @ignore
+
   Scenario Outline: Create Account successfully finishes first step and progresses to next step
-    When I fill in randomly generated email <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
+    When I fill in <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
     Then I should progress to next step and see a message addressing me with my firstName
     Examples:
       | email             | firstName | lastName | password     |

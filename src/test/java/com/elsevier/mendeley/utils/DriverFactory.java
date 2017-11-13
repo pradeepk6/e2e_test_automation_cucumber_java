@@ -2,10 +2,12 @@ package com.elsevier.mendeley.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-//import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -34,24 +36,31 @@ public class DriverFactory {
         DesiredCapabilities caps;
         switch (browser) {
             case "CHROME":
-                caps = DesiredCapabilities.chrome();
-                driver = new ChromeDriver(caps);
-
+                //caps = DesiredCapabilities.chrome();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                driver = new ChromeDriver(chromeOptions);
+                break;
+            case "CHROMEHEADLESS":
+                chromeOptions = new ChromeOptions();
+                //chromeOptions.setBinary("/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary");
+                chromeOptions.addArguments("--headless");
+                driver = new ChromeDriver(chromeOptions);
                 break;
             case "FIREFOX":
-                caps = DesiredCapabilities.firefox();
-                driver = new FirefoxDriver(caps);
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                driver = new FirefoxDriver(firefoxOptions);
+                break;
+            case "FIREFOXHEADLESS":
+                FirefoxBinary firefoxBinary = new FirefoxBinary();
+                firefoxBinary.addCommandLineOptions("--headless");
+                firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setBinary(firefoxBinary);
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "EDGE":
                 caps = DesiredCapabilities.edge();
                 driver = new EdgeDriver(caps);
                 break;
-            /*
-            case "PHANTOMJS":
-                caps = DesiredCapabilities.phantomjs();
-                driver = new PhantomJSDriver(caps);
-                break;
-            */
             case "HTMLUNIT":
                 caps = DesiredCapabilities.htmlUnit();
                 driver = new HtmlUnitDriver(caps);

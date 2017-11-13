@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = {"@createaccount"},
+        tags = {"@createaccount","~@ignore"},
         features = "src/test/resources/features",
         glue = "com.elsevier.mendeley",
         monochrome = true,

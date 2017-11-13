@@ -17,18 +17,21 @@ public class HomePage extends Page {
     @FindBy(how = How.PARTIAL_LINK_TEXT, using = "Create")
     public WebElement createAccount;
 
-    JoinPage joinPage;
-
     public HomePage(WebDriver driver) {
         super(driver);
+        visitPage();
     }
 
-    public void visitPage() {
+    void visitPage() {
         this.driver.get(url);
     }
 
-    public JoinPage clickCreateAccount() {
+    public boolean isOnPage() {
+        return checkVisibilityofElemLocated(By.partialLinkText("Create"));
+        //return getTitle().startsWith("Mendeley");
+    }
+
+    public void clickCreateAccount() throws Exception {
         createAccount.click();
-        return new JoinPage(driver);
     }
 }

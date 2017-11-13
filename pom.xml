@@ -16,7 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <acceptance.test.parallel.count>5</acceptance.test.parallel.count>
-    <browser>htmlunit</browser>
+    <browser>chrome</browser>
   </properties>
 
   <dependencies>
@@ -44,13 +44,6 @@
       <version>1.2.5</version>
       <scope>test</scope>
     </dependency>
-    <!--
-    <dependency>
-      <groupId>net.sourceforge.htmlunit</groupId>
-      <artifactId>htmlunit</artifactId>
-      <version>2.27</version>
-    </dependency>
-    -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
@@ -106,8 +99,8 @@
               <systemPropertyVariables>
                 <!-- below options are used for local testing -->
                 <browser>${browser}</browser>
-                <webdriver.chrome.driver>${project.basedir}/src/test/drivers/chromedriver.exe
-                </webdriver.chrome.driver>
+                <webdriver.chrome.driver>${project.basedir}/src/test/drivers/chromedriver.exe</webdriver.chrome.driver>
+                <webdriver.gecko.driver>${project.basedir}/src/test/drivers/geckodriver.exe</webdriver.gecko.driver>
               </systemPropertyVariables>
             </configuration>
           </execution>
