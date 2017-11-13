@@ -68,33 +68,19 @@ public class CreateAccountSteps {
         joinPage.password.sendKeys(pass);
         joinPage.clickSubmitExpectingError();
     }
-    @Then("^I should see error message$")
-    public void i_should_see_error_message(String errMsg) throws Throwable {
+
+    @Then("^I should see invalid email error message$")
+    public void i_should_see_invalid_email_error_message(String errMsg) throws Throwable {
         assertTrue(joinPage.getErrMsgForEmail().contains(errMsg));
     }
+
     @Then("^I should see password validation error message$")
     public void i_should_see_password_validation_error_message(String errMsg) throws Throwable {
         assertTrue(joinPage.getErrMsgForPassword().contains(errMsg));
     }
 
-    /*
-    @When("^I fill in (.*) for email,(.*) for firstName,(.*) for lastName,(.*) for password$")
-    public void i_fill_in_for_email_firnam_for_firstName_lasnam_for_lastName_for_password
-            (String email, String firnam, String lasnam, String pass) throws Throwable {
-        if(email.equalsIgnoreCase("generate randomly")) {
-            email = randomEmailGenerator();
-        }
-        System.out.println("email = " + email);
-        joinPage.email.sendKeys(email);
-        joinPage.first_name.sendKeys(firnam);
-        joinPage.last_name.sendKeys(lasnam);
-        joinPage.password.sendKeys(pass);
-        //joinPage.clickSubmitExpectingError();
-    }
-    */
-
-    @When("^I fill in a pre-exiting email (.*)$")
-    public void i_fill_in_a_pre_exiting_email_com_vb(String email) throws Throwable {
+    @When("^I fill in (.*) for email$")
+    public void i_fill_in_email(String email) throws Throwable {
         joinPage.email.sendKeys(email);
     }
 

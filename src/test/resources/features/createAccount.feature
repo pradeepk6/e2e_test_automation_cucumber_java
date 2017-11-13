@@ -9,20 +9,20 @@ Feature: Create online Account
     When I do NOT fill in fields : email,firstName,lastName,password and submit
     Then I should see Required validation failure for all the mentioned fields
 
-
   Scenario Outline: Create Account fails as email format is wrong
-    When I fill in <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit
-    Then I should see error message
+    When I fill in <email> for email
+    And goto to next field so as to trigger asynchromous validation of email field
+    Then I should see invalid email error message
     """
     Not a valid email. Take a closer look.
     """
     Examples:
-      | email          | firstName | lastName | password |
-      | 123            |  firnam   | lasnam   |  1234567 |
-      | 123gmail.com   |  firnam   | lasnam   |  1234567 |
+      | email          |
+      | 123            |
+      | 123gmail.com   |
 
   Scenario Outline: Asynchronous validation for Email already in use
-    When I fill in a pre-exiting email <email>
+    When I fill in <email> for email
     And goto to next field so as to trigger asynchromous validation of email field
     Then I should see email in use error message
     """
@@ -41,7 +41,6 @@ Feature: Create online Account
     Examples:
       | email             | firstName | lastName | password |
       | generate randomly |  firnam   | lasnam   |  123     |
-
 
   Scenario Outline: Create Account successfully finishes first step and progresses to next step
     When I fill in <email> for email,<firstName> for firstName,<lastName> for lastName,<password> for password and submit

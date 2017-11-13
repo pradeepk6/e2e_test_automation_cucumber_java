@@ -20,7 +20,7 @@ The project is built using the following:
 * Need Java1.8 and maven3.3.9 to run.
   If you do not have maven installed, the project can also be run within a java ide
   as most Java IDEs come with maven bundled.
-* Download the latest chrome driver binary into /src/test/drivers directory.
+* Download the latest chrome driver binary into '/src/test/drivers directory'. 
   Chrome driver url https://chromedriver.storage.googleapis.com/index.html?path=2.33
   Run mvn command : mvn verify 
 * Works with most browsers including headless For eg: to run with firefox: 
