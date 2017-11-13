@@ -45,7 +45,3 @@
 \.dorsync
 /nbactions.xml
 
-# browser binary downloads #
-############################
-/src/test/drivers/
-
