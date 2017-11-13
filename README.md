@@ -23,7 +23,7 @@ The project is built using the following:
   
 * Works with most browsers including headless For eg: to run with chrome:
   Download the latest chrome driver binary into /src/test/drivers directory.
-  [Click for Chrome driver url](https://chromedriver.storage.googleapis.com/index.html?path=2.33) 
+  Chrome driver url https://chromedriver.storage.googleapis.com/index.html?path=2.33 
   Change browser property in pom.xml to chrome or pass the same options via mvn commandline
   <br>For eg:  mvn verify -Dbrowser="chrome" -Dwebdriver.chrome.driver="file location of driver exe file"
 * To run headless chrome or firefox change the browser option to chromeheadless or firefoxheadless
